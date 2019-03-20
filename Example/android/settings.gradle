@@ -1,3 +1,5 @@
 rootProject.name = 'Example'
+include ':react-native-number-selector'
+project(':react-native-number-selector').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-number-selector/android')
 
 include ':app'

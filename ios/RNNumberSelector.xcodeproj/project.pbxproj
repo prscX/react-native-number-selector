@@ -7,8 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		815A8C4E2242310C00E3ABA1 /* AKPickerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 815A8C4D2242310700E3ABA1 /* AKPickerView.framework */; };
 		B3E7B58A1CC2AC0600A0062D /* RNNumberSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNNumberSelector.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		815A8C4C2242310700E3ABA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8184C522223558A000A3150E /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E7EBA3B038D75E5AFEB84A1BAE0126EC;
+			remoteInfo = AKPickerView;
+		};
+		8184C529223558A000A3150E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8184C522223558A000A3150E /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4618C1ECC9BA316181F2781C5F2AB754;
+			remoteInfo = "Pods-RNNumberSelector";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		58B511D91A9E6C8500147676 /* CopyFiles */ = {
@@ -23,7 +41,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		125BAB3742A2B81FC1DFA7E4 /* Pods-RNNumberSelector.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNNumberSelector.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RNNumberSelector/Pods-RNNumberSelector.debug.xcconfig"; sourceTree = "<group>"; };
 		134814201AA4EA6300B7C361 /* libRNNumberSelector.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNNumberSelector.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D7E2933ECB5E1AFDD7DB18D /* Pods-RNNumberSelector.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNNumberSelector.release.xcconfig"; path = "Pods/Target Support Files/Pods-RNNumberSelector/Pods-RNNumberSelector.release.xcconfig"; sourceTree = "<group>"; };
+		679A8797D83F4BAB61CBE5BE /* Pods_RNNumberSelector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RNNumberSelector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8184C522223558A000A3150E /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* RNNumberSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNNumberSelector.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RNNumberSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNNumberSelector.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -33,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				815A8C4E2242310C00E3ABA1 /* AKPickerView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,13 +70,42 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		16B349DA478C2B7C7615E966 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				125BAB3742A2B81FC1DFA7E4 /* Pods-RNNumberSelector.debug.xcconfig */,
+				1D7E2933ECB5E1AFDD7DB18D /* Pods-RNNumberSelector.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
 				B3E7B5881CC2AC0600A0062D /* RNNumberSelector.h */,
 				B3E7B5891CC2AC0600A0062D /* RNNumberSelector.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
+				16B349DA478C2B7C7615E966 /* Pods */,
+				AE5DA5330480BE5E9AE93371 /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		8184C523223558A000A3150E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				815A8C4D2242310700E3ABA1 /* AKPickerView.framework */,
+				8184C52A223558A000A3150E /* Pods_RNNumberSelector.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AE5DA5330480BE5E9AE93371 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8184C522223558A000A3150E /* Pods.xcodeproj */,
+				679A8797D83F4BAB61CBE5BE /* Pods_RNNumberSelector.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -63,6 +115,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "RNNumberSelector" */;
 			buildPhases = (
+				950554BF43FF48534C58C3BD /* [CP] Check Pods Manifest.lock */,
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
 				58B511D91A9E6C8500147676 /* CopyFiles */,
@@ -100,12 +153,60 @@
 			mainGroup = 58B511D21A9E6C8500147676;
 			productRefGroup = 58B511D21A9E6C8500147676;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8184C523223558A000A3150E /* Products */;
+					ProjectRef = 8184C522223558A000A3150E /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				58B511DA1A9E6C8500147676 /* RNNumberSelector */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		815A8C4D2242310700E3ABA1 /* AKPickerView.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AKPickerView.framework;
+			remoteRef = 815A8C4C2242310700E3ABA1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8184C52A223558A000A3150E /* Pods_RNNumberSelector.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_RNNumberSelector.framework;
+			remoteRef = 8184C529223558A000A3150E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		950554BF43FF48534C58C3BD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RNNumberSelector-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		58B511D71A9E6C8500147676 /* Sources */ = {
@@ -202,9 +303,10 @@
 		};
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 125BAB3742A2B81FC1DFA7E4 /* Pods-RNNumberSelector.debug.xcconfig */;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-				"$(inherited)",
+					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
@@ -218,6 +320,7 @@
 		};
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1D7E2933ECB5E1AFDD7DB18D /* Pods-RNNumberSelector.release.xcconfig */;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

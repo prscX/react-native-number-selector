@@ -1,2 +1,2 @@
-# react-native-number-picker
- ReactNative: Native Number Picker
+# react-native-number-selector
+ ReactNative: Native Number Selector
