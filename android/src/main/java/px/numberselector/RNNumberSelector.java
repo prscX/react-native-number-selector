@@ -92,6 +92,8 @@ public class RNNumberSelector extends ViewGroupManager<ViewGroup> {
         numberPicker.setMaxValue(59);
         numberPicker.setMinValue(0);
         numberPicker.setValue(3);
+        numberPicker.setOrientation(LinearLayout.HORIZONTAL);
+        numberPicker.setWheelItemCount(5);
 
 // Using string values
 // IMPORTANT! setMinValue to 1 and call setDisplayedValues after setMinValue and setMaxValue
