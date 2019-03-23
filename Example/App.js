@@ -28,7 +28,7 @@ export default class App extends Component<Props> {
         <RNNumberSelector style={{ left: 0, width: '100%', height: 50 }} items={items} selectedItem={4} spacing={50} highlightedFontSize={25} fontSize={20} textColor={'#345345'} highlightedTextColor={'#634534'} viewAnimation={0}  onChange={(number) => {
           console.log('selected: ' + number)
         }}/>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
+        <Text style={styles.welcome}>ReactNative: Native Number Picker!</Text>
       </View>
     );
   }
