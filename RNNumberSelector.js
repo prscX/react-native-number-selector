@@ -14,10 +14,11 @@ class RNNumberSelector extends PureComponent {
       items,
       selectedItem,
       spacing,
-      highlightedFontSize,
       fontSize,
+      highlightedFontSize,
       textColor,
       highlightedTextColor,
+      dividerColor,
       viewAnimation
     } = this.props;
 
@@ -27,10 +28,11 @@ class RNNumberSelector extends PureComponent {
         items={items}
         selectedItem={selectedItem}
         spacing={spacing}
-        highlightedFontSize={highlightedFontSize}
         fontSize={fontSize}
+        highlightedFontSize={highlightedFontSize}
         textColor={textColor}
         highlightedTextColor={highlightedTextColor}
+        dividerColor={dividerColor}
         viewAnimation={viewAnimation}
         onChange={this._onChange}
       />
@@ -42,20 +44,22 @@ RNNumberSelector.propTypes = {
   ...ViewPropTypes,
 
   spacing: PropTypes.number,
-  highlightedFontSize: PropTypes.number,
   fontSize: PropTypes.number,
+  highlightedFontSize: PropTypes.number,
   textColor: PropTypes.string,
   highlightedTextColor: PropTypes.string,
+  dividerColor: PropTypes.string,
   viewAnimation: PropTypes.number,
   onChange: PropTypes.func
 };
 
 RNNumberSelector.defaultProps = {
   spacing: 50,
-  highlightedFontSize: 25,
   fontSize: 20,
+  highlightedFontSize: 25,
   textColor: "#000000",
   highlightedTextColor: "#000000",
+  dividerColor: "#000000",
   viewAnimation: 1
 };
 

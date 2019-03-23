@@ -1,45 +1,20 @@
 
 package px.numberselector;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.ContextWrapper;
-import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.StrictMode;
-import android.util.AttributeSet;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.Callback;
-import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.UIManagerModule;
 import com.facebook.react.uimanager.ViewGroupManager;
 
 import com.facebook.react.uimanager.annotations.ReactProp;
-import com.facebook.react.views.text.ReactFontManager;
 import com.shawnlin.numberpicker.NumberPicker;
-
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Random;
 
 public class RNNumberSelector extends ViewGroupManager<ViewGroup> {
 
@@ -57,51 +32,7 @@ public class RNNumberSelector extends ViewGroupManager<ViewGroup> {
         NumberPicker numberPicker = new NumberPicker(reactContext.getCurrentActivity());
         frameLayout.addView(numberPicker);
 
-// Set divider color
-//        numberPicker.setDividerColor(ContextCompat.getColor(reactContext, R.color.catalyst_redbox_background));
-//        numberPicker.setDividerColorResource(R.color.catalyst_redbox_background);
-//
-//// Set formatter
-//        numberPicker.setFormatter(getString(R.string.number_picker_formatter));
-//        numberPicker.setFormatter(R.string.number_picker_formatter);
-//
-//// Set selected text color
-//        numberPicker.setSelectedTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
-//        numberPicker.setSelectedTextColorResource(R.color.colorPrimary);
-//
-//// Set selected text size
-//        numberPicker.setSelectedTextSize(getResources().getDimension(R.dimen.selected_text_size));
-//        numberPicker.setSelectedTextSize(R.dimen.selected_text_size);
-//
-//// Set text color
-//        numberPicker.setTextColor(ContextCompat.getColor(this, R.color.dark_grey));
-//        numberPicker.setTextColorResource(R.color.dark_grey);
-//
-//// Set text size
-//        numberPicker.setTextSize(getResources().getDimension(R.dimen.text_size));
-//        numberPicker.setTextSize(R.dimen.text_size);
-//
-//// Set typeface
-//        numberPicker.setTypeface(Typeface.create(getString(R.string.roboto_light), Typeface.NORMAL));
-//        numberPicker.setTypeface(getString(R.string.roboto_light), Typeface.NORMAL);
-//        numberPicker.setTypeface(getString(R.string.roboto_light));
-//        numberPicker.setTypeface(R.string.roboto_light, Typeface.NORMAL);
-//        numberPicker.setTypeface(R.string.roboto_light);
-
-// Set value
-        numberPicker.setMaxValue(59);
-        numberPicker.setMinValue(0);
-        numberPicker.setValue(3);
         numberPicker.setOrientation(LinearLayout.HORIZONTAL);
-        numberPicker.setWheelItemCount(5);
-
-// Using string values
-// IMPORTANT! setMinValue to 1 and call setDisplayedValues after setMinValue and setMaxValue
-        String[] data = {"A", "B", "C", "D", "E", "F", "G", "H", "I"};
-        numberPicker.setMinValue(1);
-        numberPicker.setMaxValue(data.length);
-        numberPicker.setDisplayedValues(data);
-        numberPicker.setValue(7);
 
 // Set fading edge enabled
         numberPicker.setFadingEdgeEnabled(true);
@@ -124,10 +55,74 @@ public class RNNumberSelector extends ViewGroupManager<ViewGroup> {
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                Log.d("", String.format(Locale.US, "oldVal: %d, newVal: %d", oldVal, newVal));
+                int id = frameLayout.getId();
+
+                reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(
+                        new NumberSelectorEvent(
+                                id,
+                                newVal));
             }
         });
 
         return frameLayout;
+    }
+
+    @ReactProp(name = "items")
+    public void setItems(FrameLayout numberPickerFrame, ReadableArray items) {
+        NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
+
+        String[] itms = new String[items.size()];
+        Object[] mItems = items.toArrayList().toArray();
+        for(int i = 0; i < mItems.length ; i++){
+            itms[i] = new Integer(new Double(items.getDouble(i)).intValue()).toString();
+        }
+
+        numberPicker.setMinValue(new Integer(items.getInt(0)));
+        numberPicker.setMaxValue(new Integer(items.getInt(items.size() - 1)));
+        numberPicker.setWheelItemCount(new Integer(items.getInt(items.size() - 1)));
+
+        numberPicker.setDisplayedValues(itms);
+    }
+
+    @ReactProp(name = "selectedItem")
+    public void setSelectedItem(FrameLayout numberPickerFrame, int selectedItem) {
+        NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
+
+        numberPicker.setValue(selectedItem);
+    }
+
+    @ReactProp(name = "textColor")
+    public void setTextColor(FrameLayout numberPickerFrame, String textColor) {
+        NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
+
+        numberPicker.setTextColor(Color.parseColor(textColor));
+    }
+
+    @ReactProp(name = "highlightedTextColor")
+    public void setHighlightedTextColor(FrameLayout numberPickerFrame, String highlightedTextColor) {
+        NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
+
+        numberPicker.setSelectedTextColor(Color.parseColor(highlightedTextColor));
+    }
+
+    @ReactProp(name = "fontSize")
+    public void setFontSize(FrameLayout numberPickerFrame, float fontSize) {
+        NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
+
+        numberPicker.setTextSize(fontSize);
+    }
+
+    @ReactProp(name = "highlightedFontSize")
+    public void setHighlightedFontSize(FrameLayout numberPickerFrame, float highlightedFontSize) {
+        NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
+
+        numberPicker.setSelectedTextSize(highlightedFontSize);
+    }
+
+    @ReactProp(name = "dividerColor")
+    public void setDividerColor(FrameLayout numberPickerFrame, String dividerColor) {
+        NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
+
+        numberPicker.setDividerColor(Color.parseColor(dividerColor));
     }
 }

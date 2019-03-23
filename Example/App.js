@@ -21,12 +21,12 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
   render() {
-    let items = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+    let items = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 
     return (
       <View style={styles.container}>
-        <RNNumberSelector style={{ left: 0, width: '100%', height: 100 }} items={items} selectedItem={4} spacing={50} highlightedFontSize={25} fontSize={20} textColor={'#345345'} highlightedTextColor={'#634534'} viewAnimation={0}  onChange={(number) => {
-          // alert('selected: ' + number)
+        <RNNumberSelector style={{ left: 0, width: '100%', height: 50 }} items={items} selectedItem={4} spacing={50} highlightedFontSize={25} fontSize={20} textColor={'#345345'} highlightedTextColor={'#634534'} viewAnimation={0}  onChange={(number) => {
+          console.log('selected: ' + number)
         }}/>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
       </View>
