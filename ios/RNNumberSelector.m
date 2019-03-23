@@ -112,7 +112,7 @@ RCT_CUSTOM_VIEW_PROPERTY(viewAnimation, NSInetger *, AKPickerView) {
 
 - (NSString *)pickerView:(AKPickerView *)pickerView titleForItem:(NSInteger)item
 {
-    return self._items[item];
+    return [NSString stringWithFormat:@"%i", [self._items[item] intValue]];
 }
 
 /*
@@ -126,8 +126,6 @@ RCT_CUSTOM_VIEW_PROPERTY(viewAnimation, NSInetger *, AKPickerView) {
 
 - (void)pickerView:(AKPickerView *)pickerView didSelectItem:(NSInteger)item
 {
-    NSLog(@"%@", self._items[item]);
-
     NSDictionary *event = @{
                             @"target": pickerView.reactTag,
                             @"value": self._items[item],
