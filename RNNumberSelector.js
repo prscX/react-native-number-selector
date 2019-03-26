@@ -43,6 +43,8 @@ class RNNumberSelector extends PureComponent {
 RNNumberSelector.propTypes = {
   ...ViewPropTypes,
 
+  items: PropTypes.array,
+  selectedItem: PropTypes.number,
   spacing: PropTypes.number,
   fontSize: PropTypes.number,
   highlightedFontSize: PropTypes.number,

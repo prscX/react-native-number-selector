@@ -2,8 +2,8 @@
 #import "RNNumberSelector.h"
 
 @interface RNNumberSelector () <AKPickerViewDataSource, AKPickerViewDelegate>
-@property (nonatomic, strong) AKPickerView *pickerView;
 @property (nonatomic, strong) NSArray *_items;
+@property (nonatomic, strong) NSNumber *_selectedItem;
 @end
 
 
@@ -16,58 +16,63 @@
 RCT_EXPORT_MODULE()
 
 - (AKPickerView *)view {
-    self.pickerView = [[AKPickerView alloc] init];
-    self.pickerView.delegate = self;
-    self.pickerView.dataSource = self;
-    self.pickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    AKPickerView *pickerView = [[AKPickerView alloc] init];
+    pickerView.delegate = self;
+    pickerView.dataSource = self;
+    pickerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 //    [self.view addSubview:self.pickerView];
     
 //    self.pickerView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:25];
 //    self.pickerView.highlightedFont = [UIFont fontWithName:@"HelveticaNeue" size:35];
 //    self.pickerView.interitemSpacing = 50.0;
-    self.pickerView.fisheyeFactor = 0.001;
+    pickerView.fisheyeFactor = 0.001;
 //    self.pickerView.pickerViewStyle = AKPickerViewStyle3D;
-    self.pickerView.maskDisabled = false;
+    pickerView.maskDisabled = false;
 
-    return self.pickerView;
+    return pickerView;
 //    return nil;
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(items, NSArray *, AKPickerView) {
     self._items = json;
 
-    [self.pickerView reloadData];
+    [view reloadData];
+    [view selectItem:[self._selectedItem integerValue] animated: NO notifySelection: NO];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(selectedItem, NSInteger *, AKPickerView) {
-    [self.pickerView selectItem:[json intValue] animated: FALSE];
+    self._selectedItem = [NSNumber numberWithInteger: [json intValue]];
+    
+    if ([self._items count] > 0) {
+        [view selectItem:[self._selectedItem integerValue] animated: NO notifySelection: NO];
+    }
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(spacing, NSInteger *, AKPickerView) {
-    self.pickerView.interitemSpacing = [json intValue];
+    view.interitemSpacing = [json intValue];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(fontSize, NSInteger *, AKPickerView) {
-    self.pickerView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size: [json intValue]];
+    view.font = [UIFont fontWithName:@"HelveticaNeue-Light" size: [json intValue]];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(highlightedFontSize, NSInteger *, AKPickerView) {
-    self.pickerView.highlightedFont = [UIFont fontWithName:@"HelveticaNeue" size: [json intValue]];
+    view.highlightedFont = [UIFont fontWithName:@"HelveticaNeue" size: [json intValue]];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(textColor, NSString *, AKPickerView) {
-    self.pickerView.textColor = [RNNumberSelector colorFromHexCode: json];
+    view.textColor = [RNNumberSelector colorFromHexCode: json];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(highlightedTextColor, NSString *, AKPickerView) {
-    self.pickerView.highlightedTextColor = [RNNumberSelector colorFromHexCode: json];
+    view.highlightedTextColor = [RNNumberSelector colorFromHexCode: json];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(viewAnimation, NSInetger *, AKPickerView) {
     if ([json intValue] == 0) {
-        self.pickerView.pickerViewStyle = AKPickerViewStyleFlat;
+        view.pickerViewStyle = AKPickerViewStyleFlat;
     } else {
-        self.pickerView.pickerViewStyle = AKPickerViewStyle3D;
+        view.pickerViewStyle = AKPickerViewStyle3D;
     }
 }
 
