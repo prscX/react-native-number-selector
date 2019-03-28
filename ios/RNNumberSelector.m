@@ -1,12 +1,6 @@
 
 #import "RNNumberSelector.h"
 
-@interface RNNumberSelector () <AKPickerViewDataSource, AKPickerViewDelegate>
-@property (nonatomic, strong) NSArray *_items;
-@property (nonatomic, strong) NSNumber *_selectedItem;
-@end
-
-
 @implementation RNNumberSelector
 
 - (dispatch_queue_t)methodQueue
@@ -34,17 +28,17 @@ RCT_EXPORT_MODULE()
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(items, NSArray *, AKPickerView) {
-    self._items = json;
+    view.items = json;
 
     [view reloadData];
-    [view selectItem:[self._selectedItem integerValue] animated: NO notifySelection: NO];
+    [view selectItem:[view.item integerValue] animated: NO notifySelection: NO];
 }
 
 RCT_CUSTOM_VIEW_PROPERTY(selectedItem, NSInteger *, AKPickerView) {
-    self._selectedItem = [NSNumber numberWithInteger: [json intValue]];
-    
-    if ([self._items count] > 0) {
-        [view selectItem:[self._selectedItem integerValue] animated: NO notifySelection: NO];
+        view.item = [NSNumber numberWithInteger: [json intValue]];
+
+    if ([view.items count] > 0) {
+        [view selectItem:[view.item integerValue] animated: NO notifySelection: NO];
     }
 }
 
@@ -104,7 +98,7 @@ RCT_CUSTOM_VIEW_PROPERTY(viewAnimation, NSInetger *, AKPickerView) {
 
 - (NSUInteger)numberOfItemsInPickerView:(AKPickerView *)pickerView
 {
-    return [self._items count];
+    return [pickerView.items count];
 }
 
 /*
@@ -117,7 +111,7 @@ RCT_CUSTOM_VIEW_PROPERTY(viewAnimation, NSInetger *, AKPickerView) {
 
 - (NSString *)pickerView:(AKPickerView *)pickerView titleForItem:(NSInteger)item
 {
-    return [NSString stringWithFormat:@"%i", [self._items[item] intValue]];
+    return [NSString stringWithFormat:@"%i", [pickerView.items[item] intValue]];
 }
 
 /*
@@ -133,7 +127,7 @@ RCT_CUSTOM_VIEW_PROPERTY(viewAnimation, NSInetger *, AKPickerView) {
 {
     NSDictionary *event = @{
                             @"target": pickerView.reactTag,
-                            @"value": self._items[item],
+                            @"value": pickerView.items[item],
                             @"name": @"tap"
                             };
 

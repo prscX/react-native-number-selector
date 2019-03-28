@@ -7,7 +7,8 @@
 
 #import "AKPickerView.h"
 
-@interface RNNumberSelector : RCTViewManager
+@interface RNNumberSelector : RCTViewManager <AKPickerViewDataSource, AKPickerViewDelegate> {
+}
 
 @end
   

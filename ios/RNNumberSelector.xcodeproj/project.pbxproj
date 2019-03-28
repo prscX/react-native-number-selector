@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		748BEF02ABC23DDC88CD682C /* Pods_RNNumberSelector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 679A8797D83F4BAB61CBE5BE /* Pods_RNNumberSelector.framework */; };
 		815A8C4E2242310C00E3ABA1 /* AKPickerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 815A8C4D2242310700E3ABA1 /* AKPickerView.framework */; };
 		B3E7B58A1CC2AC0600A0062D /* RNNumberSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* RNNumberSelector.m */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				815A8C4E2242310C00E3ABA1 /* AKPickerView.framework in Frameworks */,
+				748BEF02ABC23DDC88CD682C /* Pods_RNNumberSelector.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
