@@ -27,7 +27,32 @@ This library is a React Native bridge around native number selector libraries. I
 
 ## 📖 Getting started
 
-`$ npm install react-native-number-selector --save`
+`$ yarn add react-native-number-selector`
+
+## **RN60 >= RNNS V1 >**
+
+> RN60 above please use `react-native-number-selector` V1 and above
+
+- **iOS**
+
+> **iOS Prerequisite:** Please make sure `CocoaPods` is installed on your system
+
+	- Add the following to your `Podfile` -> `ios/Podfile` and run pod update:
+
+```
+  pod 'AKPickerView', :git => 'https://github.com/prscX/AKPickerView.git'
+
+  use_native_modules!
+
+  pod 'RNNumberSelector', :path => '../node_modules/react-native-number-selector/ios'
+```
+
+- **Android**
+
+## **RN60 < RNNS V1 <**
+
+> RN60 below please use `react-native-number-selector` V.0.*
+
 
 `$ react-native link react-native-number-selector`
 

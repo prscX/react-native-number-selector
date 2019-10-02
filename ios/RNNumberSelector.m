@@ -3,6 +3,8 @@
 
 @implementation RNNumberSelector
 
+@synthesize bridge = _bridge;
+
 - (dispatch_queue_t)methodQueue
 {
     return dispatch_get_main_queue();
@@ -131,7 +133,11 @@ RCT_CUSTOM_VIEW_PROPERTY(viewAnimation, NSInetger *, AKPickerView) {
                             @"name": @"tap"
                             };
 
-    [self.bridge.eventDispatcher sendInputEventWithName:@"topChange" body:event];
+//    [self.bridge.eventDispatcher sendInputEventWithName:@"topChange" body:event];
+    RCTComponentEvent *cEvent = [[RCTComponentEvent alloc] initWithName:@"topChange"
+                                                             viewTag:pickerView.reactTag
+                                                                body:event];
+    [self.bridge.eventDispatcher sendEvent:cEvent];
 }
 
 
