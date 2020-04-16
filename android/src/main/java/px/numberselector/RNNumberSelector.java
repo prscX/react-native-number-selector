@@ -7,15 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.graphics.Typeface;
 
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.UIManagerModule;
 import com.facebook.react.uimanager.ViewGroupManager;
+import com.facebook.react.views.text.ReactFontManager;
 
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.shawnlin.numberpicker.NumberPicker;
-
 public class RNNumberSelector extends ViewGroupManager<ViewGroup> {
 
     public static final String REACT_CLASS = "RNNumberSelector";
@@ -124,5 +125,12 @@ public class RNNumberSelector extends ViewGroupManager<ViewGroup> {
         NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
 
         numberPicker.setDividerColor(Color.parseColor(dividerColor));
+    }
+    @ReactProp(name = "fontFamily")
+    public void setFontFamily(FrameLayout numberPickerFrame, String fontFamily) {
+        NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
+        Typeface typeface = ReactFontManager.getInstance().getTypeface(fontFamily, Typeface.NORMAL,
+                numberPicker.getContext().getAssets());
+        numberPicker.setTypeface(typeface);
     }
 }

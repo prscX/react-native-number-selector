@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { requireNativeComponent } from "react-native";
 
 class RNNumberSelector extends PureComponent {
-  _onChange = event => {
+  _onChange = (event) => {
     this.props.onChange && this.props.onChange(event.nativeEvent.value);
   };
 
@@ -19,7 +19,8 @@ class RNNumberSelector extends PureComponent {
       textColor,
       highlightedTextColor,
       dividerColor,
-      viewAnimation
+      viewAnimation,
+      fontFamily,
     } = this.props;
 
     return (
@@ -35,6 +36,7 @@ class RNNumberSelector extends PureComponent {
         dividerColor={dividerColor}
         viewAnimation={viewAnimation}
         onChange={this._onChange}
+        fontFamily={fontFamily}
       />
     );
   }
@@ -52,7 +54,8 @@ RNNumberSelector.propTypes = {
   highlightedTextColor: PropTypes.string,
   dividerColor: PropTypes.string,
   viewAnimation: PropTypes.number,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  fontFamily: PropTypes.string,
 };
 
 RNNumberSelector.defaultProps = {
@@ -62,14 +65,15 @@ RNNumberSelector.defaultProps = {
   textColor: "#000000",
   highlightedTextColor: "#000000",
   dividerColor: "#000000",
-  viewAnimation: 1
+  viewAnimation: 1,
+  fontFamily: "system font",
 };
 
 const NumberSelector = requireNativeComponent(
   "RNNumberSelector",
   RNNumberSelector,
   {
-    nativeOnly: { onChange: true }
+    nativeOnly: { onChange: true },
   }
 );
 
