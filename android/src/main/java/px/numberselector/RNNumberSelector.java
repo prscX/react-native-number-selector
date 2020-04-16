@@ -133,4 +133,9 @@ public class RNNumberSelector extends ViewGroupManager<ViewGroup> {
                 numberPicker.getContext().getAssets());
         numberPicker.setTypeface(typeface);
     }
+    @ReactProp(name = "dividerThickness")
+    public void setFontFamily(FrameLayout numberPickerFrame, int dividerThickness) {
+        NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
+        numberPicker.setDividerThickness(dividerThickness);
+    }
 }
