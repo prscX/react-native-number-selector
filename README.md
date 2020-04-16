@@ -128,6 +128,7 @@ import { RNNumberPicker } from 'react-native-number-selector';
 | `textColor`    | `string #HEX-COLOR`     |         | Specify color of text                                        |  |
 | `highlightedTextColor`    | `string #HEX-COLOR`     |         | Specify color of highlighted text color                                        |  |
 | `onChange`      | `func`     |         | Specify onChange function to listen for value selection/change
+| `fontFamily`      | `string`     |   `system font`      | Specify font Family for the picker
 
 
 - **Props: Android**
