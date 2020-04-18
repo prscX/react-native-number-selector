@@ -22,12 +22,15 @@ class RNNumberSelector extends PureComponent {
       viewAnimation,
       fontFamily,
       dividerThickness,
+      maxValue,
+      minValue,
+      value,
+      wheelItemCount,
     } = this.props;
 
     return (
       <NumberSelector
         style={this.props.style}
-        items={items}
         selectedItem={selectedItem}
         spacing={spacing}
         fontSize={fontSize}
@@ -39,6 +42,10 @@ class RNNumberSelector extends PureComponent {
         viewAnimation={viewAnimation}
         onChange={this._onChange}
         fontFamily={fontFamily}
+        maxValue={maxValue}
+        minValue={minValue}
+        value={value}
+        wheelItemCount={wheelItemCount}
       />
     );
   }
@@ -59,6 +66,10 @@ RNNumberSelector.propTypes = {
   onChange: PropTypes.func,
   fontFamily: PropTypes.string,
   dividerThickness: PropTypes.number,
+  wheelItemCount: PropTypes.number,
+  value: PropTypes.number,
+  minValue: PropTypes.number,
+  maxValue: PropTypes.number,
 };
 
 RNNumberSelector.defaultProps = {
@@ -71,6 +82,7 @@ RNNumberSelector.defaultProps = {
   viewAnimation: 1,
   dividerThickness: 1,
   fontFamily: "system font",
+  wheelItemCount: 3,
 };
 
 const NumberSelector = requireNativeComponent(
