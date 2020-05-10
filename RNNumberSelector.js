@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { requireNativeComponent } from "react-native";
 
 class RNNumberSelector extends PureComponent {
-  _onChange = event => {
+  _onChange = (event) => {
     this.props.onChange && this.props.onChange(event.nativeEvent.value);
   };
 
@@ -19,22 +19,33 @@ class RNNumberSelector extends PureComponent {
       textColor,
       highlightedTextColor,
       dividerColor,
-      viewAnimation
+      viewAnimation,
+      fontFamily,
+      dividerThickness,
+      maxValue,
+      minValue,
+      value,
+      wheelItemCount,
     } = this.props;
 
     return (
       <NumberSelector
         style={this.props.style}
-        items={items}
         selectedItem={selectedItem}
         spacing={spacing}
         fontSize={fontSize}
+        dividerThickness={dividerThickness}
         highlightedFontSize={highlightedFontSize}
         textColor={textColor}
         highlightedTextColor={highlightedTextColor}
         dividerColor={dividerColor}
         viewAnimation={viewAnimation}
         onChange={this._onChange}
+        fontFamily={fontFamily}
+        maxValue={maxValue}
+        minValue={minValue}
+        value={value}
+        wheelItemCount={wheelItemCount}
       />
     );
   }
@@ -52,7 +63,13 @@ RNNumberSelector.propTypes = {
   highlightedTextColor: PropTypes.string,
   dividerColor: PropTypes.string,
   viewAnimation: PropTypes.number,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  fontFamily: PropTypes.string,
+  dividerThickness: PropTypes.number,
+  wheelItemCount: PropTypes.number,
+  value: PropTypes.number,
+  minValue: PropTypes.number,
+  maxValue: PropTypes.number,
 };
 
 RNNumberSelector.defaultProps = {
@@ -62,14 +79,17 @@ RNNumberSelector.defaultProps = {
   textColor: "#000000",
   highlightedTextColor: "#000000",
   dividerColor: "#000000",
-  viewAnimation: 1
+  viewAnimation: 1,
+  dividerThickness: 1,
+  fontFamily: "system font",
+  wheelItemCount: 3,
 };
 
 const NumberSelector = requireNativeComponent(
   "RNNumberSelector",
   RNNumberSelector,
   {
-    nativeOnly: { onChange: true }
+    nativeOnly: { onChange: true },
   }
 );
 

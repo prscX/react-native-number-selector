@@ -130,12 +130,14 @@ import { RNNumberPicker } from 'react-native-number-selector';
 | `onChange`      | `func`     |         | Specify onChange function to listen for value selection/change
 
 
+
 - **Props: Android**
 
 | Prop              | Type       | Default | Note                                                                                                       |
 | ----------------- | ---------- | ------- | ---------------------------------------------------------------------------------------------------------- |
 | `dividerColor`      | `string`     |   #000000      | Specify divider color, available only for Android platform
-
+| `dividerThickness`      | `number`     |   1      | Specify divider Thickness, available only for Android platform
+| `fontFamily`      | `string`     |   `system font`      | Specify font Family for the picker only for Android platform
 
 ## ✨ Credits
 

@@ -7,11 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.graphics.Typeface;
 
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.UIManagerModule;
 import com.facebook.react.uimanager.ViewGroupManager;
+import com.facebook.react.views.text.ReactFontManager;
 
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.shawnlin.numberpicker.NumberPicker;
@@ -34,16 +36,17 @@ public class RNNumberSelector extends ViewGroupManager<ViewGroup> {
 
         numberPicker.setOrientation(LinearLayout.HORIZONTAL);
 
-// Set fading edge enabled
+        // Set fading edge enabled
         numberPicker.setFadingEdgeEnabled(true);
 
-// Set scroller enabled
+        // Set scroller enabled
         numberPicker.setScrollerEnabled(true);
 
-// Set wrap selector wheel
+        // Set wrap selector wheel
         numberPicker.setWrapSelectorWheel(true);
+        // Set wrap selector wheel
 
-// OnClickListener
+        // OnClickListener
         numberPicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,44 +54,40 @@ public class RNNumberSelector extends ViewGroupManager<ViewGroup> {
             }
         });
 
-// OnValueChangeListener
+        // OnValueChangeListener
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 int id = frameLayout.getId();
 
-                reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher().dispatchEvent(
-                        new NumberSelectorEvent(
-                                id,
-                                newVal));
+                reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher()
+                        .dispatchEvent(new NumberSelectorEvent(id, newVal));
             }
         });
 
         return frameLayout;
     }
 
-    @ReactProp(name = "items")
-    public void setItems(FrameLayout numberPickerFrame, ReadableArray items) {
+    @ReactProp(name = "maxValue")
+    public void setmaxValue(FrameLayout numberPickerFrame, int maxValue) {
         NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
 
-        String[] itms = new String[items.size()];
-        Object[] mItems = items.toArrayList().toArray();
-        for(int i = 0; i < mItems.length ; i++){
-            itms[i] = new Integer(new Double(items.getDouble(i)).intValue()).toString();
-        }
+        numberPicker.setMaxValue(maxValue);
 
-        numberPicker.setMinValue(new Integer(items.getInt(0)));
-        numberPicker.setMaxValue(new Integer(items.getInt(items.size() - 1)));
-        numberPicker.setWheelItemCount(new Integer(items.getInt(items.size() - 1)));
-
-        numberPicker.setDisplayedValues(itms);
     }
 
-    @ReactProp(name = "selectedItem")
-    public void setSelectedItem(FrameLayout numberPickerFrame, int selectedItem) {
+    @ReactProp(name = "minValue")
+    public void setMinValue(FrameLayout numberPickerFrame, int minValue) {
         NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
 
-        numberPicker.setValue(selectedItem);
+        numberPicker.setMinValue(minValue);
+
+    }
+
+    @ReactProp(name = "value")
+    public void setSelectedItem(FrameLayout numberPickerFrame, int value) {
+        NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
+        numberPicker.setValue(value);
     }
 
     @ReactProp(name = "textColor")
@@ -124,5 +123,25 @@ public class RNNumberSelector extends ViewGroupManager<ViewGroup> {
         NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
 
         numberPicker.setDividerColor(Color.parseColor(dividerColor));
+    }
+
+    @ReactProp(name = "fontFamily")
+    public void setFontFamily(FrameLayout numberPickerFrame, String fontFamily) {
+        NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
+        Typeface typeface = ReactFontManager.getInstance().getTypeface(fontFamily, Typeface.NORMAL,
+                numberPicker.getContext().getAssets());
+        numberPicker.setTypeface(typeface);
+    }
+
+    @ReactProp(name = "dividerThickness")
+    public void setDividerThickness(FrameLayout numberPickerFrame, int dividerThickness) {
+        NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
+        numberPicker.setDividerThickness(dividerThickness);
+    }
+
+    @ReactProp(name = "wheelItemCount")
+    public void setWheelItemCount(FrameLayout numberPickerFrame, int wheelItemCount) {
+        NumberPicker numberPicker = (NumberPicker) numberPickerFrame.getChildAt(0);
+        numberPicker.setWheelItemCount(wheelItemCount);
     }
 }
